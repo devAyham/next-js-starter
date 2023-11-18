@@ -1,2 +1,2 @@
-export * from "./breakPoints.types";
+export * from "./breakPoints.type";
 export * from "./customTypographyColors.type";
