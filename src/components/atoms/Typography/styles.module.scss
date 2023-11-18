@@ -1,0 +1,7 @@
+@use "/src/styles/variables/app_colors_vars.module" as *;
+.primary {
+  color: $typo_primary_color;
+}
+.secondary {
+  color: $typo_secondary_color;
+}

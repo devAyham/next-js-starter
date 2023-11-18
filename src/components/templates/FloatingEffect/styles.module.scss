@@ -1,0 +1,15 @@
+.container {
+  animation: floating 2s infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05) translateX(2px);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

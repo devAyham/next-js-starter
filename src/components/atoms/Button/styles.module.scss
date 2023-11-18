@@ -1,0 +1,45 @@
+@use "/src/styles/variables/app_colors_vars.module" as *;
+
+.primary {
+  background-color: $primary_button_background !important;
+  color: $primary_button_color !important;
+}
+.primary_light {
+  background-color: $primary_light_button_background !important;
+  color: $primary_light_button_color !important;
+}
+.secondry {
+  background-color: $secondary_button_background !important;
+  color: $secondary_button_color !important;
+}
+.secondary_light {
+  background-color: $secondary_light_button_background !important;
+  color: $secondary_light_button_color !important;
+}
+.ghost {
+  background-color: $ghost_button_background !important;
+  color: $ghost_button_color !important;
+}
+.text {
+  background-color: $text_button_background !important;
+  color: $text_button_color !important;
+}
+.link {
+  background-color: $link_button_background !important;
+  color: $link_button_color !important;
+}
+
+.square {
+  border-radius: 10px;
+}
+.rounded {
+  border-radius: 32px !important;
+  padding-inline: 20px;
+}
+.circle {
+  border-radius: 50%;
+}
+
+.notClickable {
+  pointer-events: none;
+}

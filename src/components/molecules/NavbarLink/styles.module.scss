@@ -1,0 +1,23 @@
+@use "/src/styles/variables/app_colors_vars.module" as *;
+.item {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0.8;
+  transition: all 250ms;
+  cursor: pointer;
+  color: $header_links_color;
+  text-decoration: none;
+  &.active {
+    opacity: 1;
+    text-decoration: underline;
+  }
+  &:hover {
+    opacity: 1;
+  }
+}

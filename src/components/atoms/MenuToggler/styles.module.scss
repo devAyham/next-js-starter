@@ -1,0 +1,40 @@
+.toggle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  overflow: hidden;
+  .span {
+    position: absolute;
+    width: 35px;
+    height: 5px;
+    border-radius: 4px;
+    background-color: white;
+    transition: 0.5s;
+    &:nth-child(1) {
+      transform: translateY(-12px);
+    }
+    &:nth-child(2) {
+      transform: translateY(12px);
+    }
+  }
+  &.active {
+    .span:nth-child(3) {
+      transform: translateX(60px);
+      opacity: 0;
+    }
+    .span:nth-child(1) {
+      transform: translateY(0px) rotate(45deg);
+      transition-delay: 0.15s;
+    }
+    .span:nth-child(2) {
+      transform: translateY(0px) rotate(315deg);
+      transition-delay: 0.25s;
+    }
+  }
+}
