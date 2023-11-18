@@ -1,0 +1,52 @@
+$primary_color_1: #13c0a2;
+$primary_color_2: #71d2ba;
+$primary_color_3: #9dd3ce;
+$primary_color_4: #c8f0e9;
+$primary_color_5: #13c1a23b;
+$primary_color_6: #9ee4d8;
+
+$secondary_color: #2a4052;
+$secondary_color_2: #f0f0f0;
+
+$errors_color_1: #dc6e6e;
+$errors_color_2: #ec9e9ed1;
+$errors_color_3: #ec9e9e92;
+$errors_color_4: #ec9e9e47;
+
+$warning_dark: #ff9811;
+$warning_two: #fbf8e1;
+$warning_light: #f5e6df;
+
+$success_dark: #23a494;
+$success_light: #81ddbb85;
+$success_color: green;
+$active_color: #39c54f;
+
+$white: white;
+$black: black;
+$light_gray_without_opacity: rgba(240, 240, 240, 1);
+$light_gray_with_opacity: hsla(168, 15%, 34%, 0.059);
+$dark_gray: #d9d9d95c;
+$gray: #615f8a;
+$dark_blue: #064542;
+$black_with_opacity: #33333342;
+
+:export {
+  primary_color_1: $primary_color_1;
+  primary_color_2: $primary_color_2;
+  primary_color_3: $primary_color_3;
+  primary_color_4: $primary_color_4;
+  primary_color_5: $primary_color_5;
+  secondary_color: $secondary_color;
+  secondary_color_2: $secondary_color_2;
+  warning_dark: $warning_dark;
+  errors_color_1: $errors_color_1;
+  errors_color_2: $errors_color_2;
+  errors_color_3: $errors_color_3;
+  errors_color_4: $errors_color_4;
+  black: $black;
+  white: $white;
+  dark_gray: $dark_gray;
+  dark_blue: $dark_blue;
+  black_with_opacity: $black_with_opacity;
+}

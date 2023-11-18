@@ -1,0 +1,7 @@
+$header_height: 104px;
+$opened_header_height: 70%;
+
+:export {
+  header_height: $header_height;
+  opened_header_height: $opened_header_height;
+}
