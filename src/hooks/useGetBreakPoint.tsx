@@ -1,5 +1,5 @@
 "use client";
-import { breakPoints } from "@/constants/breakPoints";
+import { breakPoints } from "@/constants/screens/breakPoints";
 import { breakPointsTypes } from "@/types";
 import { useEffect, useMemo, useState } from "react";
 import { useWindowSize } from "./useWindowSize";
