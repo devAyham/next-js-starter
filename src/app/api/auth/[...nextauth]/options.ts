@@ -6,7 +6,6 @@ export const options: NextAuthOptions = {
   pages: {
     signIn: PagesRotes.AuthRoutes.SignIn.index,
   },
-
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -24,10 +23,17 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        // This is where you need to retrieve user data
-        // to verify with credentials
-        // Docs: https://next-auth.js.org/configuration/providers/credentials
-        const user = { id: "42", name: "Dave", password: "nextauth" };
+        const res = await fetch("http://localhost:8000/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "applicaation/json",
+          },
+          body: JSON.stringify({
+            username: credentials?.username,
+            password: credentials?.password,
+          }),
+        });
+        const user = await res.json();
 
         if (
           credentials?.username === user.name &&
@@ -40,4 +46,13 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    async session({ session, token }) {
+      session.user = token as any;
+      return session;
+    },
+  },
 };
