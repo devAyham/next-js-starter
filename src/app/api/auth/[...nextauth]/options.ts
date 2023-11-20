@@ -1,4 +1,5 @@
 import { PagesRotes } from "@/constants/routes/pagesRoutes";
+import { log } from "console";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -23,7 +24,7 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        const res = await fetch("http://localhost:8000/auth/login", {
+        const res = await fetch("http://localhost:8000/auth/sign-in'", {
           method: "POST",
           headers: {
             "Content-Type": "applicaation/json",
@@ -32,14 +33,28 @@ export const options: NextAuthOptions = {
             username: credentials?.username,
             password: credentials?.password,
           }),
-        });
-        const user = await res.json();
+        })
+          .then((res) => {
+            return res;
+          })
+          .catch((err) => {
+            log(err);
+            return null;
+          });
+        const user = await res?.json();
+        // const user = {
+        //   name: "ayham",
+        //   password: "123",
+        // };
+        console.log(user);
 
         if (
-          credentials?.username === user.name &&
-          credentials?.password === user.password
+          res?.ok &&
+          user
+          // credentials?.username === user.name &&
+          // credentials?.password === user.password
         ) {
-          return user;
+          return user as any;
         } else {
           return null;
         }
@@ -47,7 +62,10 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update") {
+        return { ...token, ...session.user };
+      }
       return { ...token, ...user };
     },
     async session({ session, token }) {
