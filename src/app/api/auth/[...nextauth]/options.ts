@@ -1,10 +1,16 @@
+import { PagesRotes } from "@/constants/routes/pagesRoutes";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const options: NextAuthOptions = {
+  pages: {
+    signIn: PagesRotes.AuthRoutes.SignIn.index,
+  },
+
   providers: [
     CredentialsProvider({
       name: "Credentials",
+
       credentials: {
         username: {
           label: "Username:",
