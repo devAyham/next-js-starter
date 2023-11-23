@@ -4,58 +4,49 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const options: NextAuthOptions = {
-  pages: {
-    signIn: PagesRotes.AuthRoutes.SignIn.index,
-  },
+  // pages: {
+  //   signIn: PagesRotes.AuthRoutes.SignIn.index,
+  // },
+
   providers: [
     CredentialsProvider({
       name: "Credentials",
-
       credentials: {
-        username: {
-          label: "Username:",
-          type: "text",
-          placeholder: "your-cool-username",
+        email: {
+          type: "email",
         },
         password: {
-          label: "Password:",
           type: "password",
-          placeholder: "your-awesome-password",
         },
       },
       async authorize(credentials) {
-        const res = await fetch("http://localhost:8000/auth/sign-in'", {
-          method: "POST",
-          headers: {
-            "Content-Type": "applicaation/json",
-          },
-          body: JSON.stringify({
-            username: credentials?.username,
-            password: credentials?.password,
-          }),
-        })
-          .then((res) => {
-            return res;
-          })
-          .catch((err) => {
-            log(err);
-            return null;
+        if (!credentials?.email || !credentials?.password) return null;
+        try {
+          const res = await fetch("http://localhost:3001/auth/sign-in", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: credentials.email,
+              password: credentials.password,
+            }),
           });
-        const user = await res?.json();
-        // const user = {
-        //   name: "ayham",
-        //   password: "123",
-        // };
-        console.log(user);
+          if (res.status == 401) {
+            console.log("res");
 
-        if (
-          res?.ok &&
-          user
-          // credentials?.username === user.name &&
-          // credentials?.password === user.password
-        ) {
-          return user as any;
-        } else {
+            return null;
+          }
+          const user = await res?.json();
+          console.log(user);
+
+          if (res?.ok && user) {
+            return user;
+          } else {
+            return null;
+          }
+        } catch (err) {
+          console.log("err");
           return null;
         }
       },
@@ -69,7 +60,10 @@ export const options: NextAuthOptions = {
       return { ...token, ...user };
     },
     async session({ session, token }) {
-      session.user = token as any;
+      console.log("sssss", token);
+      session.user = token.user;
+      session.tokens = token.tokens;
+
       return session;
     },
   },
